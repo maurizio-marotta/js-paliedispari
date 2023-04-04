@@ -6,57 +6,43 @@ Stabiliamo se la somma dei due numeri è pari o dispari (usando una funzione)
 Dichiariamo chi ha vinto.
 */
 
-/*
-1)fare un prompt che fa scegliere all'utente pari o dispari
-2)fare un prompt che fa scegliere un numero da 1 a 5 l'utente
-3)inserire numerobot in un ciclo che genera un numero da 1 a 5
-4)inserire generanumero in un ciclo e fare l'addizione del numeroutente + numerobot
-5)inserire tutto all'interno di un ciclo che determina il vincitore 
+const button = document.getElementById('bottone');
 
-*/
+function generanumerorandom(v) {
 
-function getRndInteger(min = 1, max = 5) {
-  return Math.floor(Math.random() * (max - min + 1) ) + min;
-  console.log('non viene eseguito');
-}
+    let n = Math.floor(Math.random() * v) + 1
 
-function isEven(number){
-  //restituisce true se il numero è pari
-  //false se il numero è dispari
-
-  // if(number % 2 === 0){
-  //     return true;
-  // } else {
-  //     return false;
-  // }
-
-  if(number % 2 === 0){
-      return true;
-  }
-
-  return false;
+    return n
 
 }
 
+button.addEventListener('click', function() { 
+    
+    const pari = document.querySelector('#pari').checked;
+    const dispari = document.querySelector('#dispari').checked;
+    let numerouser = parseInt(document.getElementById('numero').value)
+    let numeropc = generanumerorandom(5)
+    let somma = numerouser + numeropc
 
-function sumNumbers(num1, num2){
-  return num1 + num2;
-}
+    console.log(pari , dispari , numerouser, somma );
 
+    document.getElementById('sceltacomputer').innerHTML = `il pc ha scelto: ${numeropc} la somma dei vosti numeri è: ${somma}`
 
-/****
-* Main
-*/
+    if (pari==true && somma % 2 == 0) {
 
-const userChoise = prompt('Scegli pari o dispari');
-const userNumber = Number(prompt('Inserisci un numero da 1 a 5'));
-const cpuNumber = getRndInteger(1, 5);//funzione che genera un numero random da 1 a 5
+        document.getElementById('esito').innerHTML = 'hai vinto la somma è pari'
 
-const sum = sumNumbers(userNumber,cpuNumber);
-const result = isEven(sum);
+    } else if (dispari==true && somma % 2 != 0) {
 
-if((userChoise === 'pari' && result === true) || (userChoise === 'dispari' && result === false)){
-  console.log('Utente vince');
-} else {
-  console.log('Utente perde');
-}
+        document.getElementById('esito').innerHTML = 'hai vinto la somma è dispari'
+
+    } else if (pari==false && somma % 2 == 0) {
+
+        document.getElementById('esito').innerHTML = 'hai perso la somma è pari'
+
+    } else if (dispari==false && somma % 2 != 0) {
+
+        document.getElementById('esito').innerHTML = 'hai perso la somma è dispari'
+
+    }    
+});
