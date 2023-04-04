@@ -15,10 +15,48 @@ Dichiariamo chi ha vinto.
 
 */
 
-let sceltaUtente  = prompt ('scegli pari o dispari')
-let numeroUtente  = prompt('inserisci un numero da 1 a 5')
-let numeroBot     = generaNumero(numeroUtente + numeroBot)
+function getRndInteger(min = 1, max = 5) {
+  return Math.floor(Math.random() * (max - min + 1) ) + min;
+  console.log('non viene eseguito');
+}
 
-console.log (numeroBot)
+function isEven(number){
+  //restituisce true se il numero è pari
+  //false se il numero è dispari
 
-//alert('il numero de essere da 1 a 5');
+  // if(number % 2 === 0){
+  //     return true;
+  // } else {
+  //     return false;
+  // }
+
+  if(number % 2 === 0){
+      return true;
+  }
+
+  return false;
+
+}
+
+
+function sumNumbers(num1, num2){
+  return num1 + num2;
+}
+
+
+/****
+* Main
+*/
+
+const userChoise = prompt('Scegli pari o dispari');
+const userNumber = Number(prompt('Inserisci un numero da 1 a 5'));
+const cpuNumber = getRndInteger(1, 5);//funzione che genera un numero random da 1 a 5
+
+const sum = sumNumbers(userNumber,cpuNumber);
+const result = isEven(sum);
+
+if((userChoise === 'pari' && result === true) || (userChoise === 'dispari' && result === false)){
+  console.log('Utente vince');
+} else {
+  console.log('Utente perde');
+}
